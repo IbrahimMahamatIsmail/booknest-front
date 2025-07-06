@@ -8,7 +8,7 @@ const MotDePasseOublie = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://booknest-backend-z9vo.onrender.com/utilisateurs/mot-de-passe-oublie", { email }); // TODO : à mettre le bon url en prod !!!
+      const res = await axios.post("https://booknest-backend-z9vo.onrender.com/utilisateurs/mot-de-passe-oublie", { email }); 
       setMessage(res.data.message);
     } catch (err) {
       setMessage("Une erreur est survenue. Vérifie ton email.");

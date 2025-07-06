@@ -16,7 +16,7 @@ const Inscription = () => {
     setMessage("");
 
     try {
-      const res = await axios.post("https://booknest-backend-z9vo.onrender.com/utilisateurs/register", { // TODO : à mettre le bon url en prod !!!
+      const res = await axios.post("https://booknest-backend-z9vo.onrender.com/utilisateurs/register", { 
         nom,
         email,
         mot_de_passe: motDePasse,
@@ -33,7 +33,7 @@ const Inscription = () => {
       <Helmet>
         <title>Inscription | BookNest</title>
         <meta name="description" content="Inscrivez-vous sur BookNest pour accéder à une vaste bibliothèque de livres numériques. Créez votre compte en quelques étapes simples." />
-        <link rel="canonical" href="https://booknest-front-pn2qapybn-ibrahimmahamatismails-projects.vercel.app/register" />
+        <link rel="canonical" href="https://booknest-front.vercel.app/register" />
       </Helmet>
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-100 to-blue-300">
         <div className="bg-white p-8 rounded shadow-md w-full max-w-md">

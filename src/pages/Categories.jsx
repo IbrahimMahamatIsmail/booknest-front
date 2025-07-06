@@ -25,7 +25,7 @@ const Categories = () => {
           name="description"
           content="Découvrez toutes les catégories de livres disponibles sur BookNest. Explorez, empruntez et lisez vos livres préférés !"
         />
-        <link rel="canonical" href="https://booknest-front-pn2qapybn-ibrahimmahamatismails-projects.vercel.app/categories" />
+        <link rel="canonical" href="https://booknest-front.vercel.app/categories" />
       </Helmet>
       <div className="max-w-4xl mx-auto p-8">
         <h2 className="text-2xl font-bold text-blue-700 mb-6 text-center">Toutes les catégories</h2>
