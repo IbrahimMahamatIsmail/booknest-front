@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    
+    <!-- SEO & Référencement -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Ibrahim Mahamat Ismail" />
+    <meta property="og:title" content="BookNest - Bibliothèque numérique" />
+    <meta property="og:description" content="Découvrez des centaines de livres à emprunter gratuitement avec BookNest." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://booknest-front.vercel.app/" />
+    <meta property="og:image" content="/favicon-32x32.png" />
+  
+    <!-- Google Analytics conforme au RGPD -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PJD2M94M6B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('consent', 'default', {
+        analytics_storage: 'denied'
+      });
+      gtag('config', 'G-PJD2M94M6B', { anonymize_ip: true });
+    </script>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="description" content="📚 BookNest — La bibliothèque numérique nouvelle génération" />
+  
+    <!-- Icônes navigateur -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+  
+    <title>📚 BookNest - Bibliothèque numérique</title>
+  </head>  
+  <body>
+    <noscript>
+      <style>
+        {`
+          #no-js-message {
+            display: block;
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+          }
+        `}
+      </style>
+      <div id="no-js-message">
+        JavaScript est désactivé. Veuillez l’activer pour utiliser BookNest.
+      </div>
+    </noscript>    
+    <div id="root"></div>
+  </body>
+</html>
+
