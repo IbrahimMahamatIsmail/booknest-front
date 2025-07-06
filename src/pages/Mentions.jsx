@@ -6,6 +6,7 @@ const Mentions = () => {
       <Helmet>
         <title>Mentions légales | BookNest</title>
         <meta name="description" content="Mentions légales de la plateforme BookNest : éditeur, hébergeur, contact." />
+        <link rel="canonical" href="https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/mentions-legales" />
       </Helmet>
 
       <div className="max-w-4xl mx-auto p-8 text-sm text-gray-700">

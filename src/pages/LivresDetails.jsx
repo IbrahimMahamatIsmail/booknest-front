@@ -46,6 +46,7 @@ const LivreDetails = () => {
       <Helmet>
         <title>{livre.titre} | BookNest</title>
         <meta name="description" content={`Détails du livre ${livre.titre} par ${livre.auteur}. Découvrez sa description, extrait et avis des lecteurs.`} />
+        <link rel="canonical" href={`https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/livres/${id}`} />
       </Helmet>
       <div className="max-w-4xl mx-auto p-8">
         <h1 className="text-3xl font-bold text-blue-700 mb-2">{livre.titre}</h1>

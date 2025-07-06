@@ -49,6 +49,7 @@ const Login = () => {
       <Helmet>
         <title>Connexion | BookNest</title>
         <meta name="description" content="Connectez-vous à BookNest pour accéder à votre bibliothèque de livres numériques. Profitez d'une expérience de lecture enrichissante." />
+        <link rel="canonical" href="https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/login" />
       </Helmet>
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="bg-white p-8 rounded shadow-md w-full max-w-md">

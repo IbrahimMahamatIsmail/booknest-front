@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://booknest-front.vercel.app/sitemap.xml
+Sitemap: https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/sitemap.xml

@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://booknest-front.vercel.app/</loc>
+    <loc>https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/</loc>
     <priority>1.0</priority>
   </url>
+
   <url>
-    <loc>https://booknest-front.vercel.app/a-propos</loc>
+    <loc>https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/a-propos</loc>
   </url>
+
   <url>
-    <loc>https://booknest-front.vercel.app/mentions-legales</loc>
+    <loc>https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/mentions-legales</loc>
   </url>
+
   <url>
-    <loc>https://booknest-front.vercel.app/politique-de-confidentialite</loc>
+    <loc>https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/politique-de-confidentialite</loc>
   </url>
-    <url>
-    <loc>https://booknest-front.vercel.app/politique-de-confidentialite</loc>
+
+  <url>
+    <loc>https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/livres</loc>
   </url>
-    <url>
-    <loc>https://booknest-front.vercel.app/politique-de-confidentialite</loc>
+
+  <url>
+    <loc>https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/categories</loc>
   </url>
-    <url>
-    <loc>https://booknest-front.vercel.app/politique-de-confidentialite</loc>
+
+  <url>
+    <loc>https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/login</loc>
   </url>
-    <url>
-    <loc>https://booknest-front.vercel.app/politique-de-confidentialite</loc>
+
+  <url>
+    <loc>https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/register</loc>
   </url>
 </urlset>

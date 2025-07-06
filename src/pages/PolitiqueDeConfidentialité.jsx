@@ -11,6 +11,7 @@ const PolitiqueDeConfidentialite = () => {
       <Helmet>
         <title>Politique de confidentialité | BookNest</title>
         <meta name="description" content="Notre politique de confidentialité explique comment nous protégeons vos données sur BookNest." />
+        <link rel="canonical" href="https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/politique-de-confidentialite" />
       </Helmet>
 
       <div className="max-w-4xl mx-auto p-8 text-sm text-gray-700">
