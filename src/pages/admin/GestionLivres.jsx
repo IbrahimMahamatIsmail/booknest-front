@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+/*import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -141,7 +141,7 @@ const GestionLivres = () => {
 
       {message && <div className="text-center mb-4 text-green-600">{message}</div>}
 
-      {/* Ajouter un livre */}
+      {/* Ajouter un livre *//*}/*
       <form onSubmit={handleAddLivre} className="grid gap-4 mb-8">
         <input
           type="text"
@@ -166,7 +166,7 @@ const GestionLivres = () => {
           className="p-2 border rounded"
         />
 
-        {/* Toggle entre Upload et URL */}
+        {/* Toggle entre Upload et URL *//*}
         <div className="flex items-center gap-4">
           <label className="text-sm font-medium">Image :</label>
           <button
@@ -249,7 +249,7 @@ const GestionLivres = () => {
         </button>
       </form>
       
-      {/* Liste des livres et depuis le bouton supprimer peut supprimer le livre souhaité */}
+      {/* Liste des livres et depuis le bouton supprimer peut supprimer le livre souhaité *//*}
       <div className="grid gap-6 md:grid-cols-2">
         {livres.map((livre) => (
           <div key={livre.id} className="bg-white shadow p-4 rounded relative">
@@ -279,4 +279,189 @@ const GestionLivres = () => {
   );
 };
 
+export default GestionLivres;*/
+
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+const GestionLivres = () => {
+  const [livres, setLivres] = useState([]);
+  const [titre, setTitre] = useState("");
+  const [auteur, setAuteur] = useState("");
+  const [description, setDescription] = useState("");
+  const [categorie, setCategorie] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [imagePublicId, setImagePublicId] = useState("");
+  const [contenu, setContenu] = useState("");
+  const [extrait, setExtrait] = useState("");
+  const [stock, setStock] = useState(1);
+  const [message, setMessage] = useState("");
+  const [previewImage, setPreviewImage] = useState("");
+  const [utiliserUpload, setUtiliserUpload] = useState(false);
+
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchLivres();
+  }, []);
+
+  const fetchLivres = async () => {
+    try {
+      const res = await axios.get("https://booknest-backend-z9vo.onrender.com/livres");
+      setLivres(res.data.livres);
+    } catch (err) {
+      console.error("Erreur chargement livres :", err);
+    }
+  };
+
+  const handleUploadImage = async (file) => {
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const res = await axios.post("https://booknest-backend-z9vo.onrender.com/upload", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      setImageUrl(res.data.url);
+      setImagePublicId(res.data.public_id);
+      setPreviewImage(res.data.url);
+    } catch (err) {
+      console.error("Erreur upload image:", err);
+    }
+  };
+
+  const supprimerImageUploadee = async () => {
+    if (!imagePublicId) return;
+    try {
+      await axios.delete(`https://booknest-backend-z9vo.onrender.com/upload/${imagePublicId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setImageUrl("");
+      setImagePublicId("");
+      setPreviewImage("");
+    } catch (err) {
+      console.error("Erreur suppression image:", err);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) handleUploadImage(file);
+  };
+
+  const handleAddLivre = async (e) => {
+    e.preventDefault();
+    if (!titre || !description || (!imageUrl && !utiliserUpload)) {
+      setMessage("Tous les champs doivent être remplis");
+      return;
+    }
+
+    try {
+      await axios.post(
+        "https://booknest-backend-z9vo.onrender.com/admin/add-livre",
+        { titre, auteur, description, categorie, image_url: imageUrl, contenu, extrait, stock },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setMessage("Livre ajouté avec succès 📚✅");
+      resetForm();
+      fetchLivres();
+    } catch (err) {
+      console.error(err);
+      setMessage("Erreur ajout livre");
+    }
+  };
+
+  const resetForm = () => {
+    setTitre("");
+    setAuteur("");
+    setDescription("");
+    setCategorie("");
+    setImageUrl("");
+    setImagePublicId("");
+    setPreviewImage("");
+    setContenu("");
+    setExtrait("");
+    setStock(1);
+  };
+
+  const handleDelete = async (id) => {
+    if (!window.confirm("Supprimer ce livre ?")) return;
+    try {
+      await axios.delete(`https://booknest-backend-z9vo.onrender.com/admin/delete-livre/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setMessage("Livre supprimé 🗑️");
+      fetchLivres();
+    } catch (err) {
+      console.error(err);
+      setMessage("Erreur suppression");
+    }
+  };
+
+  return (
+    <div className="max-w-6xl mx-auto p-8">
+      <h2 className="text-2xl font-bold text-blue-700 mb-6 text-center">Gestion des Livres 📚</h2>
+
+      {message && <div className="text-center mb-4 text-green-600">{message}</div>}
+
+      <form onSubmit={handleAddLivre} className="grid gap-4 mb-8">
+        <input type="text" placeholder="Titre" value={titre} onChange={(e) => setTitre(e.target.value)} className="p-2 border rounded" required />
+        <input type="text" placeholder="Auteur" value={auteur} onChange={(e) => setAuteur(e.target.value)} className="p-2 border rounded" />
+        <input type="text" placeholder="Catégorie" value={categorie} onChange={(e) => setCategorie(e.target.value)} className="p-2 border rounded" />
+
+        <div className="flex items-center gap-4">
+          <label className="text-sm font-medium">Image :</label>
+          <button type="button" onClick={() => { setUtiliserUpload(!utiliserUpload); if (utiliserUpload) supprimerImageUploadee(); }} className="bg-blue-500 text-white px-2 py-1 rounded text-sm">
+            {utiliserUpload ? "Utiliser URL" : "Uploader image"}
+          </button>
+        </div>
+
+        {utiliserUpload ? (
+          <div>
+            <input type="file" accept="image/*" onChange={handleImageChange} className="p-2 border rounded" />
+            {previewImage && (
+              <div className="mt-2">
+                <img src={previewImage} alt="Preview" className="h-32 object-cover mb-2" />
+                <button type="button" onClick={supprimerImageUploadee} className="bg-red-500 text-white px-2 py-1 rounded text-sm">Supprimer l'image</button>
+              </div>
+            )}
+          </div>
+        ) : (
+          <input type="text" placeholder="Lien image" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} className="p-2 border rounded" />
+        )}
+
+        <textarea placeholder="Extrait" value={extrait} onChange={(e) => setExtrait(e.target.value)} className="p-2 border rounded"></textarea>
+        <textarea placeholder="Contenu" value={contenu} onChange={(e) => setContenu(e.target.value)} className="p-2 border rounded"></textarea>
+        <textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="p-2 border rounded" required></textarea>
+        <input type="number" placeholder="Stock" value={stock} min={1} onChange={(e) => setStock(parseInt(e.target.value))} className="p-2 border rounded" />
+
+        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">Ajouter le livre</button>
+      </form>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        {livres.map((livre) => (
+          <div key={livre.id} className="bg-white shadow p-4 rounded relative">
+            <div className="flex justify-between items-start">
+              <h3 className="text-lg font-semibold text-blue-600">{livre.titre}</h3>
+              <div className="flex gap-2">
+                <button onClick={() => navigate(`/admin/update-livre/${livre.id}`)} className="bg-green-500 text-white px-3 py-1 rounded text-sm">Modifier</button>
+                <button onClick={() => handleDelete(livre.id)} className="bg-red-500 text-white px-3 py-1 rounded text-sm">Supprimer</button>
+              </div>
+            </div>
+            <p className="text-sm text-gray-700 mt-2">Auteur : {livre.auteur}</p>
+            <p className="text-sm text-gray-600">Catégorie : {livre.categorie}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default GestionLivres;
+
