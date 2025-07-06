@@ -11,7 +11,7 @@ const Home = () => {
           name="description"
           content="Bienvenue sur BookNest, la bibliothèque numérique qui vous connecte à un monde de savoirs. Empruntez, lisez et partagez vos livres préférés !"
         />
-        <link rel="canonical" href="https://booknest-front-k9vb6424u-ibrahimmahamatismails-projects.vercel.app/" />
+        <link rel="canonical" href="https://booknest-front-pn2qapybn-ibrahimmahamatismails-projects.vercel.app/" />
       </Helmet>
       <meta name="google-site-verification" content="aqVsBfWwiTYaRkjDlkJ1HPWeyFWfdWiGZcMyhj5x-s4" />
       <div className="font-sans bg-gray-50 text-gray-800 min-h-screen">
