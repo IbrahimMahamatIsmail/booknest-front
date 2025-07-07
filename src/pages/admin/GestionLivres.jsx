@@ -9,14 +9,15 @@ const GestionLivres = () => {
   const [description, setDescription] = useState("");
   const [categorie, setCategorie] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [imageFichier, setImageFichier] = useState(null);
-  const [utiliserUpload, setUtiliserUpload] = useState(false);
+  const [imagePublicId, setImagePublicId] = useState("");
   const [contenu, setContenu] = useState("");
   const [extrait, setExtrait] = useState("");
   const [stock, setStock] = useState(1);
   const [message, setMessage] = useState("");
+  // const [imageFichier, setImageFichier] = useState(null);
   const [previewImage, setPreviewImage] = useState("");
-  const [fichierUploadNom, setFichierUploadNom] = useState("");
+  const [utiliserUpload, setUtiliserUpload] = useState(false);
+  //const [fichierUploadNom, setFichierUploadNom] = useState("");
 
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
@@ -47,46 +48,45 @@ const GestionLivres = () => {
       });
   
       setImageUrl(res.data.url);
-      setPreviewImage(`https://booknest-backend-z9vo.onrender.com${res.data.url}`);
-      setFichierUploadNom(res.data.filename);
+      setImagePublicId(res.data.public_id);
+      // setPreviewImage(`https://booknest-backend-z9vo.onrender.com${res.data.url}`);
+      setPreviewImage(res.data.url);
+      // setFichierUploadNom(res.data.filename);
     } catch (err) {
       console.error("Erreur lors de l'upload de l'image :", err);
     }
   };  
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImageFichier(file);
-      handleUploadImage(file);
-    }
-  };
-
   const supprimerImageUploadee = async () => {
-    if (!fichierUploadNom) return;
+    if (!imagePublicId) return;
     try {
-      await axios.delete(`https://booknest-backend-z9vo.onrender.com/upload/${fichierUploadNom}`, {
+      await axios.delete(`https://booknest-backend-z9vo.onrender.com/upload/${imagePublicId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       setImageUrl("");
+      setImagePublicId("");
       setPreviewImage("");
-      setImageFichier(null);
-      setFichierUploadNom("");
+      // setImageFichier(null);
+      // setFichierUploadNom("");
     } catch (err) {
       console.error("Erreur lors de la suppression du fichier uploadé:", err);
     }
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) handleUploadImage(file);
+  };
+
   const handleAddLivre = async (e) => {
     e.preventDefault();
+    if (!titre || !description || (!imageUrl && !utiliserUpload)) {
+      setMessage("Veuillez remplir tous les champs obligatoires et ajouter une image");
+      return;
+    }
     try {
-      if (!titre || !description || (!imageUrl && !imageFichier)) {
-        setMessage("Veuillez remplir tous les champs obligatoires et ajouter une image");
-        return;
-      }
-
       await axios.post(
         "https://booknest-backend-z9vo.onrender.com/admin/add-livre",
         { titre, auteur, description, categorie, image_url: imageUrl, contenu, extrait, stock },
@@ -111,9 +111,10 @@ const GestionLivres = () => {
     setDescription("");
     setCategorie("");
     setImageUrl("");
-    setImageFichier(null);
+    setImagePublicId("");
+    // setImageFichier(null);
     setPreviewImage("");
-    setFichierUploadNom("");
+    // setFichierUploadNom("");
     setContenu("");
     setExtrait("");
     setStock(1);

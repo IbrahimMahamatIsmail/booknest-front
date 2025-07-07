@@ -22,36 +22,6 @@ const RechercheLivre = () => {
       setLivres([]);
     }
   };
-  /*return (
-    <div className="max-w-4xl mx-auto p-6 text-center">
-      <h2 className="text-xl font-semibold mb-4 text-blue-700">Rechercher un livre</h2>
-      <div className="flex justify-center gap-2 mb-6">
-        <input
-          type="text"
-          value={query}
-          onChange= {handleInputChange}
-          placeholder="Ex : La Peste"
-          className="border border-gray-300 p-2 rounded w-full relative z-10"
-        />
-        {livres.length > 0 && (
-          <ul className="absolute bg-white border border-gray-300 rounded mt-2 w-full max-h-60 overflow-auto shadow-lg z-20 text-left">
-            {livres.map((livre) => (
-              <li
-                key={livre.id}
-                onClick={() => window.location.href = `/livres/${livre.id}`}  // Redirection simple vers la page du livre
-                className="px-4 py-2 hover:bg-blue-100 cursor-pointer"
-              >
-                {livre.titre}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      {query && livres.length === 0 && (
-        <p className="text-sm text-gray-500 mt-2">Aucun livre trouvé.</p>
-      )}
-    </div>
-  );*/
   return (
     <div className="max-w-4xl mx-auto p-6 text-center">
     <h2 className="text-xl font-semibold mb-4 text-blue-700">Rechercher un livre</h2>

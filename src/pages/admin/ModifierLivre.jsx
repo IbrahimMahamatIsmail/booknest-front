@@ -11,7 +11,8 @@ const ModifierLivre = () => {
   const [livre, setLivre] = useState("");
   const [utiliserUpload, setUtiliserUpload] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
-  const [fichierUploadNom, setFichierUploadNom] = useState("");
+  const [imagePublicId, setImagePublicId] = useState("");
+  // const [fichierUploadNom, setFichierUploadNom] = useState("");
 
 
   useEffect(() => {
@@ -19,6 +20,7 @@ const ModifierLivre = () => {
       try {
         const res = await axios.get(`https://booknest-backend-z9vo.onrender.com/livres/${id}`);
         setLivre(res.data);
+        setPreviewImage(res.data.image_url || ""); // Pour afficher l'image actuelle si elle existe new
       } catch (err) {
         console.error("Erreur récupération livre :", err);
       }
@@ -38,8 +40,11 @@ const ModifierLivre = () => {
         },
       });
       setLivre({ ...livre, image_url: res.data.url });
-      setPreviewImage(`https://booknest-backend-z9vo.onrender.com${res.data.url}`);
-      setFichierUploadNom(res.data.filename);
+      // setPreviewImage(`https://booknest-backend-z9vo.onrender.com${res.data.url}`);
+      setPreviewImage(res.data.url);
+      setImagePublicId(res.data.public_id);
+      // setFichierUploadNom(res.data.filename);
+      toast.success("Image uploadée ✅");
     } catch (err) {
       console.error("Erreur upload image:", err);
       toast.error("Erreur lors de l'upload de l'image !");
@@ -54,18 +59,24 @@ const ModifierLivre = () => {
   };
 
   const supprimerImageUploadee = async () => {
-    if (!fichierUploadNom) return;
+    if (!imagePublicId) {
+      toast.error("Aucune image à supprimer");
+      return;
+    }
     try {
-      await axios.delete(`https://booknest-backend-z9vo.onrender.com/upload/${fichierUploadNom}`, {
+      await axios.delete(`https://booknest-backend-z9vo.onrender.com/upload/${imagePublicId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       setLivre({ ...livre, image_url: "" });
       setPreviewImage("");
-      setFichierUploadNom("");
+      // setFichierUploadNom("");
+      setImagePublicId("");
+      toast.success("Image supprimée 🗑️");
     } catch (err) {
       console.error("Erreur lors de la suppression du fichier uploadé:", err);
+      toast.error("Erreur suppression !");
     }
   };
 
