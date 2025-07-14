@@ -11,7 +11,7 @@ const Home = () => {
           name="description"
           content="Bienvenue sur BookNest, la bibliothèque numérique qui vous connecte à un monde de savoirs. Empruntez, lisez et partagez vos livres préférés !"
         />
-        <link rel="canonical" href="https://booknest-front.vercel.app/" />
+        <link rel="canonical" href="https://booknest-front.vercel.app" />
       </Helmet>
       <meta name="google-site-verification" content="aqVsBfWwiTYaRkjDlkJ1HPWeyFWfdWiGZcMyhj5x-s4" />
       <div className="font-sans bg-gray-50 text-gray-800 min-h-screen">
@@ -20,7 +20,7 @@ const Home = () => {
           <div className="max-w-4xl mx-auto text-center" data-aos="fade-up">
             <h2 className="text-4xl font-bold mb-4 text-blue-800">Bienvenue sur BookNest</h2>
             <p className="text-lg text-gray-700 mb-6">
-              La bibliothèque numérique qui vous connecte à un monde de savoirs 📖✨
+              La bibliothèque numérique qui vous connecte à un monde de savoirs 📖
             </p>
             <div className="mb-6">
               <RechercheLivre />
